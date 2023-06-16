@@ -5,21 +5,21 @@ let score = document.querySelector(".score");
 const jeopardyCategories = [
   {
     genre: "WHO",
-    questions: [
+    question: [
       {
-        questions: "Who wrote Harry Potter?",
+        question: "Who wrote Harry Potter?",
         answers: ["J.K. Rowling", "J.R.R. Tolkien"],
         correct: "J.K. Rowling",
         level: "easy",
       },
       {
-        questions: "Who was born on Krypton?",
+        question: "Who was born on Krypton?",
         answers: ["Superman", "Aquaman"],
         correct: "Superman",
         level: "medium",
       },
       {
-        questions: "Who Designed the first car?",
+        question: "Who Designed the first car?",
         answers: ["Karl Benz", "Henry Ford"],
         correct: "Karl Benz",
         level: "hard",
@@ -28,21 +28,21 @@ const jeopardyCategories = [
   },
   {
     genre: "WHERE",
-    questions: [
+    question: [
       {
-        questions: "Where is Buckinghamn Palace",
+        question: "Where is Buckinghamn Palace",
         answers: ["Richmond", "London"],
         correct: "London",
         level: "easy",
       },
       {
-        questions: "Where is the Colosseum?",
+        question: "Where is the Colosseum?",
         answers: ["Rome", "Milan"],
         correct: "Rome",
         level: "medium",
       },
       {
-        questions: "Where is Mount Kilamanjaro?",
+        question: "Where is Mount Kilamanjaro?",
         answers: ["Zimbabwe", "Tanzania"],
         correct: "Tanzania",
         level: "hard",
@@ -51,21 +51,21 @@ const jeopardyCategories = [
   },
   {
     genre: "WHEN",
-    questions: [
+    question: [
       {
-        questions: "When is Christmas?",
+        question: "When is Christmas?",
         answers: ["Jan 30", "Dec 25"],
         correct: "Dec 25",
         level: "easy",
       },
       {
-        questions: "When was WWII?",
+        question: "When was WWII?",
         answers: ["1932", "1941"],
         correct: "1941",
         level: "medium",
       },
       {
-        questions: "When was JFK shot?",
+        question: "When was JFK shot?",
         answers: ["1963", "1961"],
         correct: "1963",
         level: "hard",
@@ -74,21 +74,21 @@ const jeopardyCategories = [
   },
   {
     genre: "WHAT",
-    questions: [
+    question: [
       {
-        questions: "What is kg short for?",
+        question: "What is kg short for?",
         answers: ["Kilojoule", "Kilogram"],
         correct: "Kilogram",
         level: "easy",
       },
       {
-        questions: "What do koalas eat?",
+        question: "What do koalas eat?",
         answers: ["straw", "Eucalyptus"],
         correct: "Eucalyptus",
         level: "medium",
       },
       {
-        questions: "What is the capital of Saudi Arabia?",
+        question: "What is the capital of Saudi Arabia?",
         answers: ["Jeddah", "Riyadh"],
         correct: "Riyadh",
         level: "hard",
@@ -97,21 +97,21 @@ const jeopardyCategories = [
   },
   {
     genre: "HOW MANY",
-    questions: [
+    question: [
       {
-        questions: "How man players in a football team?",
+        question: "How man players in a football team?",
         answers: ["15", "11"],
         correct: "11",
         level: "easy",
       },
       {
-        questions: "How man seconds are in an hour?",
+        question: "How man seconds are in an hour?",
         answers: ["36000", "3600"],
         correct: "3600",
         level: "medium",
       },
       {
-        questions: "How man people are in China?",
+        question: "How man people are in China?",
         answers: ["1.1 billion", "1.4 billion"],
         correct: "1.4 billion",
         level: "hard",
@@ -130,6 +130,26 @@ const addCategory = (category) => {
 
   column.appendChild(genreTitle);
   game.append(column);
+
+  category.question.forEach((question) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    column.append(card);
+
+    if (question.level === "easy") {
+      card.innerHTML = 100;
+    } else if (question.level === "medium") {
+      card.innerHTML = 200;
+    } else if (question.level === "hard") {
+      card.innerHTML = 300;
+    }
+
+    card.setAttribute("dataQuestion", question.question);
+    card.setAttribute("dataAnswer1", question.answers[0]);
+    card.setAttribute("dataAnswer2", question.answers[1]);
+    card.setAttribute("dataCorrect", question.correct);
+    card.setAttribute("dataValue", card.getInnerHTML());
+  });
 };
 
 jeopardyCategories.forEach((category) => addCategory(category));
