@@ -120,6 +120,22 @@ const jeopardyCategories = [
   },
 ];
 
+const flipCard = () => {
+  this.innerHTML = "";
+
+  const textDisplay = document.createElement("div");
+  textDisplay.classList.add("cardText");
+  textDisplay.innerHTML = this.getAttribute("dataQuestion");
+  const buttonOne = document.createElement("button");
+  const buttonTwo = document.createElement("button");
+
+  buttonOne.classList.add("buttonOne");
+  buttonTwo.classList.add("buttonTwo");
+  buttonOne.innerHTML = this.getAttribute("dataAnswerOne");
+  buttonTwo.innerHTML = this.getAttribute("dataAnswerTwo");
+  this.append(textDisplay, buttonOne, buttonTwo);
+};
+
 const addCategory = (category) => {
   let column = document.createElement("div");
   column.classList.add("genreColumn");
@@ -149,6 +165,8 @@ const addCategory = (category) => {
     card.setAttribute("dataAnswer2", question.answers[1]);
     card.setAttribute("dataCorrect", question.correct);
     card.setAttribute("dataValue", card.getInnerHTML());
+
+    card.addEventListener("click", flipCard);
   });
 };
 
