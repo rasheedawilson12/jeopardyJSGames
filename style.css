@@ -31,3 +31,19 @@ body {
   padding: 10px;
   line-height: 120px;
 }
+
+.buttonOne {
+  background-color: rgb(24, 171, 26);
+}
+
+.buttonTwo {
+  background-color: rgb(190, 57, 37);
+}
+
+.genreTitle {
+  background-color: rgb(26, 26, 255);
+  text-align: center;
+  font-size: 28px;
+  padding: 5px;
+  margin: 5px;
+}

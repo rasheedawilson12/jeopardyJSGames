@@ -122,7 +122,8 @@ const jeopardyCategories = [
 
 const flipCard = () => {
   this.innerHTML = "";
-
+  this.style.fontSize = "15px";
+  this.style.lineHeight = "30px";
   const textDisplay = document.createElement("div");
   textDisplay.classList.add("cardText");
   textDisplay.innerHTML = this.getAttribute("dataQuestion");
@@ -166,7 +167,7 @@ const addCategory = (category) => {
     card.setAttribute("dataCorrect", question.correct);
     card.setAttribute("dataValue", card.getInnerHTML());
 
-    card.addEventListener("click", flipCard);
+    // card.addEventListener("click", flipCard());
   });
 };
 
