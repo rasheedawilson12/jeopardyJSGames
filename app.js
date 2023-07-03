@@ -120,6 +120,39 @@ const jeopardyCategories = [
   },
 ];
 
+let playerScore = 0;
+
+const getResult = () => {
+  const allCards = Array.from(document.querySelectorAll(".card"));
+  allCards.forEach((card) => card.addEventListener("click", flipCard()));
+
+  const cardOfButton = this.parentElement;
+
+  if (cardOfButton.getAttribute(dataCorrect) == this.innerHTML) {
+    playerScore =
+      playerScore + parseInt(cardOfButton.getAttribute("dataValue"));
+    score.innerHTML = playerScore;
+    cardOfButton.classList.add(".correctAnswer");
+    setTimeout(() => {
+      while (cardOfButton.firstChile) {
+        cardOfButton.removeChild(cardOfButton.lastChild);
+      }
+
+      cardOfButton.innerHTML = cardOfButton.getAttribute("dataValue");
+    }, 100);
+  } else {
+    cardOfButton.classList.add(".wrongAnswer");
+    setTimeout(() => {
+      while (cardOfButton.firstChile) {
+        cardOfButton.removeChild(cardOfButton.lastChild);
+      }
+
+      cardOfButton.innerHTML = 0;
+    }, 100);
+  }
+  cardOfButton.removeEventListener("click", flipCard());
+};
+
 const flipCard = () => {
   this.innerHTML = "";
   this.style.fontSize = "15px";
@@ -133,8 +166,13 @@ const flipCard = () => {
   buttonOne.classList.add("buttonOne");
   buttonTwo.classList.add("buttonTwo");
   buttonOne.innerHTML = this.getAttribute("dataAnswerOne");
+  buttonOne.addEventListener("click", getResult());
+  buttonTwo.addEventListener("click", getResult());
   buttonTwo.innerHTML = this.getAttribute("dataAnswerTwo");
   this.append(textDisplay, buttonOne, buttonTwo);
+
+  const allCards = Array.from(document.querySelectorAll(".card"));
+  allCards.forEach((card) => card.removeEventListener("click", flipCard()));
 };
 
 const addCategory = (category) => {
